@@ -1,0 +1,117 @@
+body {
+    font-family: 'Noto sans', sans-serif !important;
+    width: 100%;
+}
+
+/* NAVBAR TOP BEGIN */
+.navbar {
+    transition: all 0.5s;
+}
+
+.navbar-logo-img {
+    width: 50px;
+    height: 50px;
+    transition: all 0.5s;
+}
+
+.navbar-logo {
+    margin-top: 40px;
+    margin-left: 50px;
+    transition: all 0.5s;
+}
+
+.nav-item {
+    font-size: 18px;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 40px;
+    transition: all 0.5s;
+}
+
+
+a.nav-link {
+    color:black;
+    font-weight: 700;
+    transition: all 0.5s;
+}
+
+a.nav-link:hover {
+    color: rgb(169, 149, 123) !important;
+}
+/* NAVBAR TOP END */
+
+/* BANNER IMAGE BEGIN */
+.banner-image {
+    background-size: cover;
+    height: 100vh; /* 100% of viewport height */
+    justify-content: center;
+    align-items: center;
+}
+
+#banner-text {
+    font-size: 100px;
+    font-weight: 700;
+}
+/* BANNER IMAGE END */
+
+/* MAIN CONTENT BEGIN */
+.main-content-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+td.td-header {
+    width: 50%;
+    text-align: center;
+    padding: 70px 50px;
+}
+
+td.td-header p {
+    font-size: 15px;
+    transition: all 2s;
+}
+
+td.td-header h1 p {
+    margin-top: 15px;
+    font-size: 25px;
+}
+
+
+td.td-header h1 img {
+    width: 20%;
+    height: 20%;
+}
+
+.main-content-schiphol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+    transition: all 2s;
+}
+
+.main-content-schiphol-img {
+    border-radius: 25px;
+    width: 30%;
+    height: 30%;
+    margin-right: 15%;
+    transition: all 2s;
+}
+
+.main-content-schiphol-text {
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 5%;
+    transition: all 2s;
+}
+
+.main-content-schiphol-text p {
+    margin-top: 5%;
+}
+/* MAIN CONTENT END */
+
+/* BANNER BOTTOM BEGIN */
+#github {
+    font-size: 13px;
+}
+/* BANNER BOTTOM END */
