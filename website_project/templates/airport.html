@@ -20,13 +20,13 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Graphs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="destinations">Destinations</a>
+                        <a class="nav-link" href="#">Airport</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="aircrafts">Aircrafts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="destinations">Destinations</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
@@ -34,4 +34,34 @@
                 </ul>
             </div>
         </nav>
+
+        <!-- MAIN CONTENT -->
+        <div id="main-content" class="container">
+            <table class="main-content-table">
+                <tr>
+                    <td class="td-header">
+                        FLIGHT NUMBER
+                    </td>
+                    <td class="td-header">
+                        DESTINATION
+                    </td>
+                    <td class="td-header">
+                        TIME
+                    </td>
+                </tr>
+                {% for flight in flights %}
+                <tr>
+                    <td class="td-header">
+                        {{ flight.flightName }}
+                    </td>
+                    <td class="td-header">
+                    </td>
+                    <td class="td-header">
+                        {{ flight.scheduleDate }} at {{ flight.scheduleTime }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
 </html>

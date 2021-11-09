@@ -3,7 +3,7 @@ from website_project import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('graphs', views.graphs, name='graphs'),
+    path('airport', views.airport, name='airport'),
     path('destinations', views.destinations, name='destinations'),
     path('aircrafts', views.aircrafts, name='aricrafts'),
 ]

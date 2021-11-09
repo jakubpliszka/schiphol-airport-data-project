@@ -40,3 +40,19 @@ a.nav-link:hover {
     color: rgb(169, 149, 123) !important;
 }
 /* NAVBAR TOP END */
+
+/* MAIN CONTENT BEGIN */
+#main-content {
+    margin-top: 200px;
+}
+
+.main-content-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.td-header {
+    border: solid black 1px;
+    text-align: center;
+}
+/* MAIN CONTENT END */
