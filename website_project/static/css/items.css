@@ -42,17 +42,16 @@ a.nav-link:hover {
 /* NAVBAR TOP END */
 
 /* MAIN CONTENT BEGIN */
-#main-content {
-    margin-top: 200px;
+.main-content {
+    margin-top: 100px;
+    display: flex;
 }
 
-.main-content-table {
-    width: 100%;
-    table-layout: fixed;
+.td-body, .th-header {
+    text-align: center;
 }
 
-.td-header {
-    border: solid black 1px;
+.main-content-header {
     text-align: center;
 }
 /* MAIN CONTENT END */
