@@ -46,11 +46,13 @@ a.nav-link:hover {
     height: 100vh; /* 100% of viewport height */
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
-#banner-text {
-    font-size: 100px;
+.banner-text {
+    font-size: 70px;
     font-weight: 700;
+    color: rgb(0, 0, 0);
 }
 /* BANNER IMAGE END */
 
@@ -111,6 +113,10 @@ td.td-header h1 img {
 /* MAIN CONTENT END */
 
 /* BANNER BOTTOM BEGIN */
+.navbar-bottom {
+    margin-top: 5%;
+}
+
 #github {
     font-size: 13px;
 }
