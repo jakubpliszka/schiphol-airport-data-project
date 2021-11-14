@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from flights_manage import get_flights_by_date
 from public_flights import get_public_flights
 # Create your views here.
 
 def index(request):
+    get_flights_by_date()
     return render(request, 'index.html')
 
 def airport(request):
