@@ -60,16 +60,16 @@
                     {% for flight in departures %}
                     <tr>
                         <td class="td-body">
-                            {{ flight.flightName }}
+                            {{ flight.flight_number }}
                         </td>
                         <td class="td-body">
-                            {{ flight.scheduleDate }} at {{ flight.scheduleTime }}
+                            {{ flight.flight_date|date:"d M Y" }} at {{ flight.flight_time|date:"H:i" }}
                         </td>
                         <td class="td-body">
-                            {{ flight.flightDirection }}
+                            {{ flight.flight_direction }}
                         </td>
                         <td class="td-body">
-                            {{ flight.aircraftType }}
+                            {{ flight.aircraft_type }}
                         </td>
                     </tr>
                     {% endfor %}
@@ -99,16 +99,16 @@
                     {% for flight in arrivals %}
                     <tr>
                         <td class="td-body">
-                            {{ flight.flightName }}
+                            {{ flight.flight_number }}
                         </td>
                         <td class="td-body">
-                            {{ flight.scheduleDate }} at {{ flight.scheduleTime }}
+                            {{ flight.flight_date|date:"d M Y" }} at {{ flight.flight_time|date:"H:i" }}
                         </td>
                         <td class="td-body">
-                            {{ flight.flightDirection }}
+                            {{ flight.flight_direction }}
                         </td>
                         <td class="td-body">
-                            {{ flight.aircraftType }}
+                            {{ flight.aircraft_type }}
                         </td>
                     </tr>
                     {% endfor %}
