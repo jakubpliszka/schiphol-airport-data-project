@@ -1,10 +1,16 @@
 from datetime import datetime, timedelta
 
-from public_flights import get_public_flights_from_api
-from website_project.models import ArrivalFlight, DepartureFlight
+from public_flights import get_public_flights_from_api, get_destinations_from_api
+from website_project.models import ArrivalFlight, DepartureFlight, DestinationCityName
 
 TIME_DELTA = timedelta(hours=-1)
 DATE_DELTA = timedelta(days=-1)
+
+def get_destinations_full_name() -> str:
+    if not DestinationCityName.objects.filter().exists():
+        get_destinations = get_destinations_from_api()
+
+    return get_destinations
 
 def get_flights_by_date():
     today = datetime.now().date()

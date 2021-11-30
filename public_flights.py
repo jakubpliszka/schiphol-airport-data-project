@@ -3,9 +3,9 @@ import time
 
 from datetime import datetime
 
-from website_project.models import ArrivalFlight, DepartureFlight
+# from requests.api import get
 
-
+from website_project.models import ArrivalFlight, DepartureFlight, DestinationCityName
 
 APP_ID = ''
 APP_KEY = ''
@@ -17,9 +17,37 @@ HEADERS = {
 }
 
 PUBLIC_FLIGHTS_URL = 'https://api.schiphol.nl/public-flights/flights'
-PUBLIC_FLIGHTS_DESTINATIONS_URL = 'https://api.schiphol.nl/public-flights/destinations/'
+PUBLIC_FLIGHTS_DESTINATIONS_URL = 'https://api.schiphol.nl/public-flights/destinations'
 PAGE_LIMIT = 999
 
+
+def get_destinations_from_api() -> bool:
+    page_number = 0
+    
+    while page_number < PAGE_LIMIT:
+        params = {
+            'page': f'{page_number}'
+        }
+
+        response = requests.get(url=PUBLIC_FLIGHTS_DESTINATIONS_URL, headers=HEADERS, params=params)
+        if response.status_code != 200:
+            print(response)
+        else:
+            destinations = response.json()
+            if not destinations['destinations']:
+                return True
+
+            for destination in destinations['destinations']:
+                city = destination['city']
+                iata = destination['iata']
+
+                if city is not None and iata is not None:
+                    register_destination = DestinationCityName(city=city, iata=iata)
+                    register_destination.save()
+        
+        page_number += 1
+
+    return True
 
 def get_public_flights_from_api() -> bool:
     start_time = time.time()
@@ -43,34 +71,27 @@ def get_public_flights_from_api() -> bool:
                     if flight['mainFlight'] == previous_main_flight:
                         continue
                     
-                    # city_name_from_airport_code_url = PUBLIC_FLIGHTS_DESTINATIONS_URL + (flight['route'])['destinations'][0]
-                    # response = requests.get(url=city_name_from_airport_code_url, headers=HEADERS)
-
-                    # if response.status_code != 200:
-                    #     city_name = (flight['route'])['destinations'][0]
-                    #     print(response)
-                    # else:
-                    #     city_name_json = response.json()
-                    #     city_name = city_name_json['city']
-
-                    city_name = (flight['route'])['destinations'][0]
-
-                    formatted_date = datetime.strptime(flight['scheduleDate'], '%Y-%m-%d').date()   # convert flight date to match models time format
-                    formatted_time = datetime.strptime(flight['scheduleTime'], '%H:%M:%S').time()   # convert flight time to match models time format
+                    flight_number = flight['mainFlight'] if flight['mainFlight'] is not None else "N/A"
+                    formatted_date = datetime.strptime(flight['scheduleDate'], '%Y-%m-%d').date() if flight['scheduleDate'] is not None else "N/A"  # convert flight date to match models time format
+                    formatted_time = datetime.strptime(flight['scheduleTime'], '%H:%M:%S').time() if flight['scheduleTime'] is not None else "N/A"  # convert flight time to match models time format
+                    flight_direction = (flight['route'])['destinations'][0] if (flight['route'])['destinations'][0] is not None else "N/A"
+                    # temp = DestinationCityName.objects.filter(iata=(flight['route'])['destinations'][0])
+                    # flight_direction = temp.city if temp.city is not None else "N/A"
+                    aircraft_type = (flight['aircraftType'])['iataSub'] if (flight['aircraftType'])['iataSub'] is not None else "N/A"
 
                     if flight['flightDirection'].lower() == "d":
-                        register_departure_flight = DepartureFlight(flight_number = flight['mainFlight'],
+                        register_departure_flight = DepartureFlight(flight_number = flight_number,
                                                                     flight_date = formatted_date,
                                                                     flight_time = formatted_time,
-                                                                    flight_direction = city_name,
-                                                                    aircraft_type = (flight['aircraftType'])['iataSub'])
+                                                                    flight_direction = flight_direction,
+                                                                    aircraft_type = aircraft_type)
                         register_departure_flight.save()
                     elif flight['flightDirection'].lower() == "a":
-                        register_arrival_flight = ArrivalFlight(flight_number = flight['mainFlight'],
+                        register_arrival_flight = ArrivalFlight(flight_number = flight_number,
                                                                 flight_date = formatted_date,
                                                                 flight_time = formatted_time,
-                                                                flight_direction = city_name,
-                                                                aircraft_type = (flight['aircraftType'])['iataSub'])
+                                                                flight_direction = flight_direction,
+                                                                aircraft_type = aircraft_type)
                         register_arrival_flight.save()
 
                     previous_main_flight = flight['mainFlight']

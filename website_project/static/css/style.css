@@ -61,6 +61,12 @@ a.nav-link:focus {
 /* BANNER IMAGE END */
 
 /* MAIN CONTENT BEGIN */
+.main-content {
+    background-size: cover;
+    height: 100vh; /* 100% of viewport height */
+    transform: scaleY(-1);
+}
+
 .main-content-table {
     width: 100%;
     table-layout: fixed;
@@ -68,12 +74,13 @@ a.nav-link:focus {
 
 td.td-header {
     width: 50%;
+    vertical-align: top;
     text-align: center;
     padding: 70px 50px;
 }
 
-td.td-header p {
-    font-size: 15px;
+.td-header-paragraph {
+    font-size: 18px;
     transition: all 2s;
 }
 
