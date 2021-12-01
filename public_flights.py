@@ -28,23 +28,26 @@ def get_destinations_from_api() -> bool:
         params = {
             'page': f'{page_number}'
         }
+        try:
+            response = requests.get(url=PUBLIC_FLIGHTS_DESTINATIONS_URL, headers=HEADERS, params=params)
+            if response.status_code != 200:
+                print(response)
+            else:
+                destinations = response.json()
+                if not destinations['destinations']:
+                    return True
 
-        response = requests.get(url=PUBLIC_FLIGHTS_DESTINATIONS_URL, headers=HEADERS, params=params)
-        if response.status_code != 200:
-            print(response)
-        else:
-            destinations = response.json()
-            if not destinations['destinations']:
-                return True
+                for destination in destinations['destinations']:
+                    city = destination['city'] if destination['city'] is not None else "N/A"
+                    iata = destination['iata'] if destination['iata'] is not None else "N/A"
+                    country = destination['country'] if destination['country'] is not None else "N/A"
 
-            for destination in destinations['destinations']:
-                city = destination['city']
-                iata = destination['iata']
-
-                if city is not None and iata is not None:
-                    register_destination = DestinationCityName(city=city, iata=iata)
+                    register_destination = DestinationCityName(city=city, iata=iata, country=country)
                     register_destination.save()
-        
+        except Exception as error:
+            print("Caught exception!", error)
+            return False
+
         page_number += 1
 
     return True
@@ -74,10 +77,14 @@ def get_public_flights_from_api() -> bool:
                     flight_number = flight['mainFlight'] if flight['mainFlight'] is not None else "N/A"
                     formatted_date = datetime.strptime(flight['scheduleDate'], '%Y-%m-%d').date() if flight['scheduleDate'] is not None else "N/A"  # convert flight date to match models time format
                     formatted_time = datetime.strptime(flight['scheduleTime'], '%H:%M:%S').time() if flight['scheduleTime'] is not None else "N/A"  # convert flight time to match models time format
-                    flight_direction = (flight['route'])['destinations'][0] if (flight['route'])['destinations'][0] is not None else "N/A"
-                    # temp = DestinationCityName.objects.filter(iata=(flight['route'])['destinations'][0])
-                    # flight_direction = temp.city if temp.city is not None else "N/A"
-                    aircraft_type = (flight['aircraftType'])['iataSub'] if (flight['aircraftType'])['iataSub'] is not None else "N/A"
+                    city_model = DestinationCityName.objects.get(iata=flight['route']['destinations'][0])
+                    if city_model.city is not None:
+                        flight_direction = city_model.city
+                    elif flight['route']['destinations'][0] is not None:
+                        flight_direction = flight['route']['destinations'][0]
+                    else:
+                        flight_direction = "N/A"
+                    aircraft_type = flight['aircraftType']['iataSub'] if flight['aircraftType']['iataSub'] is not None else "N/A"
 
                     if flight['flightDirection'].lower() == "d":
                         register_departure_flight = DepartureFlight(flight_number = flight_number,

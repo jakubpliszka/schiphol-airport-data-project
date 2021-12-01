@@ -6,7 +6,8 @@ from website_project.models import ArrivalFlight, DepartureFlight, DestinationCi
 TIME_DELTA = timedelta(hours=-1)
 DATE_DELTA = timedelta(days=-1)
 
-def get_destinations_full_name() -> str:
+def get_destinations_full_name() -> bool:
+    get_destinations = True
     if not DestinationCityName.objects.filter().exists():
         get_destinations = get_destinations_from_api()
 

@@ -5,10 +5,10 @@ from flights_manage import get_flights_by_date, get_destinations_full_name
 # Create your views here.
 
 def index(request):
-    get_destinations_full_name()
     return render(request, 'index.html')
 
 def airport(request):
+    get_destinations_full_name()
     departures, arrivals = get_flights_by_date()
     return render(request, 'airport.html', {'departures': departures, 'arrivals': arrivals})
 
