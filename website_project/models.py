@@ -16,7 +16,7 @@ class ArrivalFlight(models.Model):
     flight_direction = models.CharField(max_length=100, default="N/A")
     aircraft_type = models.CharField(max_length=4, default="N/A")
 
-class DestinationCityName(models.Model):
+class Destination(models.Model):
     city = models.CharField(max_length=100, default="N/A")
     iata = models.CharField(max_length=4, default="N/A")
     country = models.CharField(max_length=100, default="N/A")

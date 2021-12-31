@@ -5,7 +5,7 @@ from datetime import datetime
 
 # from requests.api import get
 
-from website_project.models import ArrivalFlight, DepartureFlight, DestinationCityName
+from website_project.models import ArrivalFlight, DepartureFlight, Destination
 
 APP_ID = ''
 APP_KEY = ''
@@ -42,7 +42,7 @@ def get_destinations_from_api() -> bool:
                     iata = destination['iata'] if destination['iata'] is not None else "N/A"
                     country = destination['country'] if destination['country'] is not None else "N/A"
 
-                    register_destination = DestinationCityName(city=city, iata=iata, country=country)
+                    register_destination = Destination(city=city, iata=iata, country=country)
                     register_destination.save()
         except Exception as error:
             print("Caught exception!", error)
@@ -77,7 +77,7 @@ def get_public_flights_from_api() -> bool:
                     flight_number = flight['mainFlight'] if flight['mainFlight'] is not None else "N/A"
                     formatted_date = datetime.strptime(flight['scheduleDate'], '%Y-%m-%d').date() if flight['scheduleDate'] is not None else "N/A"  # convert flight date to match models time format
                     formatted_time = datetime.strptime(flight['scheduleTime'], '%H:%M:%S').time() if flight['scheduleTime'] is not None else "N/A"  # convert flight time to match models time format
-                    city_model = DestinationCityName.objects.get(iata=flight['route']['destinations'][0])
+                    city_model = Destination.objects.get(iata=flight['route']['destinations'][0])
                     if city_model.city is not None:
                         flight_direction = city_model.city
                     elif flight['route']['destinations'][0] is not None:
