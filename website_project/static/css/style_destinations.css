@@ -1,0 +1,59 @@
+body {
+    font-family: 'Noto sans', sans-serif !important;
+    width: 100%;
+}
+
+/* NAVBAR TOP BEGIN */
+.navbar {
+    transition: all 0.5s;
+}
+
+.navbar-logo-img {
+    width: 50px;
+    height: 50px;
+    filter: invert(1);
+    transition: all 0.5s;
+}
+
+.navbar-logo {
+    margin-top: 0px;
+    margin-left: 50px;
+    transition: all 0.5s;
+}
+
+.nav-item {
+    font-size: 18px;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 0px;
+    transition: all 0.5s;
+}
+
+
+a.nav-link, a.nav-link:focus {
+    color:white;
+    font-weight: 700;
+    transition: all 0.5s;
+}
+
+a.nav-link:hover {
+    color: rgb(143, 121, 94) !important;
+}
+/* NAVBAR TOP END */
+
+/* MAIN CONTENT BEGIN */
+.main-content {
+    margin-top: 100px;
+    display: block;
+}
+
+.main-content-header {
+    text-align: center;
+}
+
+.graph {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+/* MAIN CONTENT END */

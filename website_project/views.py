@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 from flights_manage import get_flights_by_date, get_destinations_full_name
 from data_analysis import create_plot_from_todays_flights
-# Create your views here.
+
 
 def index(request):
     return render(request, 'index.html')
@@ -14,8 +14,9 @@ def airport(request):
     return render(request, 'airport.html', {'departures': departures, 'arrivals': arrivals})
 
 def destinations(request):
-    data = create_plot_from_todays_flights()
-    return render(request, 'destinations.html', {'graph': data})
+    all_time_data = create_plot_from_todays_flights(get_all_time_data=True)
+    todays_data = create_plot_from_todays_flights(get_all_time_data=False)
+    return render(request, 'destinations.html', {'graph_all_data': all_time_data, 'graph_single_day': todays_data})
 
 def aircrafts(request):
     return render(request, 'aircrafts.html')
