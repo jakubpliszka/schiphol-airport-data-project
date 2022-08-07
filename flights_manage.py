@@ -6,12 +6,14 @@ from website_project.models import ArrivalFlight, DepartureFlight, Destination
 TIME_DELTA = timedelta(hours=-1)
 DATE_DELTA = timedelta(days=-1)
 
+
 def get_destinations_full_name() -> bool:
     get_destinations = True
     if not Destination.objects.filter().exists():
         get_destinations = get_destinations_from_api()
 
     return get_destinations
+
 
 def get_flights_by_date():
     today = datetime.now().date()
@@ -24,7 +26,7 @@ def get_flights_by_date():
     # if there aren't objects with today's date, get api data
     if not DepartureFlight.objects.filter(flight_date=today).exists():
         is_todays_data = get_public_flights_from_api()
-            
+
     if is_todays_data:
         # get all flights with today's date and flight time starting 1 hour back from now
         departures = DepartureFlight.objects.filter(flight_date=today, flight_time__gte=delta_time_back_from_now)
