@@ -1,6 +1,6 @@
-# WEBSITE PROJECT
+# Schiphol Airport Data Project
 
-This project is using Schiphol airport REST API
+This project uses Schiphol airport REST API
 
 Technologies used:
 * HTML
