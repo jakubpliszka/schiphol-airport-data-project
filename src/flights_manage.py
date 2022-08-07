@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from public_flights import get_public_flights_from_api, get_destinations_from_api
+from src.public_flights import get_public_flights_from_api, get_destinations_from_api
 from website_project.models import ArrivalFlight, DepartureFlight, Destination
 
 TIME_DELTA = timedelta(hours=-1)

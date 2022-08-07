@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from flights_manage import get_flights_by_date, get_destinations_full_name
-from data_analysis import create_plot_from_todays_flights
+from src.flights_manage import get_flights_by_date, get_destinations_full_name
+from src.data_analysis import create_plot_from_todays_flights
 
 
 def index(request):
