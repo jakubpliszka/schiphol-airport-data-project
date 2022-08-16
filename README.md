@@ -9,3 +9,11 @@ Technologies used:
 * JavaScript
 * Python
 * Django
+
+## Docker deployment
+
+```
+docker-compose run --rm app sh -c "django-admin startproject website_project ."
+
+docker-compose up
+```
