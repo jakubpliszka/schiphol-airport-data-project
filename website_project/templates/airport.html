@@ -39,81 +39,85 @@
     <div class="container main-content">
         <div class="container">
             <h1 class="main-content-header">DEPARTURES</h1>
-            <table class="table main-content-table">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col" class="th-header col-md-1">
-                            FLIGHT NUMBER
-                        </th>
-                        <th scope="col" class="th-header col-md-2">
-                            DEPARTURE TIME
-                        </th>
-                        <th scope="col" class="th-header col-md-1">
-                            TO
-                        </th>
-                        <th scope="col" class="th-header col-md-1">
-                            AIRCRAFT
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for flight in departures %}
-                    <tr>
-                        <td class="td-body">
-                            {{ flight.flight_number }}
-                        </td>
-                        <td class="td-body">
-                            {{ flight.flight_date|date:"d M Y" }} at {{ flight.flight_time|date:"H:i" }}
-                        </td>
-                        <td class="td-body">
-                            {{ flight.flight_direction }}
-                        </td>
-                        <td class="td-body">
-                            {{ flight.aircraft_type }}
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="table-fix-head">
+                <table class="table main-content-table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col" class="th-header col-md-1">
+                                FLIGHT NUMBER
+                            </th>
+                            <th scope="col" class="th-header col-md-2">
+                                DEPARTURE TIME
+                            </th>
+                            <th scope="col" class="th-header col-md-1">
+                                TO
+                            </th>
+                            <th scope="col" class="th-header col-md-1">
+                                AIRCRAFT
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for flight in departures %}
+                        <tr>
+                            <td class="td-body">
+                                {{ flight.flight_number }}
+                            </td>
+                            <td class="td-body">
+                                {{ flight.flight_date|date:"d M Y" }} at {{ flight.flight_time|date:"H:i" }}
+                            </td>
+                            <td class="td-body">
+                                {{ flight.flight_direction }}
+                            </td>
+                            <td class="td-body">
+                                {{ flight.aircraft_type }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="container">
             <h1 class="main-content-header">ARRIVALS</h1>
-            <table class="table main-content-table">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col" class="th-header col-md-1">
-                            FLIGHT NUMBER
-                        </th>
-                        <th scope="col" class="th-header col-md-2">
-                            ARRIVAL TIME
-                        </th>
-                        <th scope="col" class="th-header col-md-1">
-                            FROM
-                        </th>
-                        <th scope="col" class="th-header col-md-1">
-                            AIRCRAFT
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for flight in arrivals %}
-                    <tr>
-                        <td class="td-body">
-                            {{ flight.flight_number }}
-                        </td>
-                        <td class="td-body">
-                            {{ flight.flight_date|date:"d M Y" }} at {{ flight.flight_time|date:"H:i" }}
-                        </td>
-                        <td class="td-body">
-                            {{ flight.flight_direction }}
-                        </td>
-                        <td class="td-body">
-                            {{ flight.aircraft_type }}
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="table-fix-head">
+                <table class="table main-content-table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col" class="th-header col-md-1">
+                                FLIGHT NUMBER
+                            </th>
+                            <th scope="col" class="th-header col-md-2">
+                                ARRIVAL TIME
+                            </th>
+                            <th scope="col" class="th-header col-md-1">
+                                FROM
+                            </th>
+                            <th scope="col" class="th-header col-md-1">
+                                AIRCRAFT
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for flight in arrivals %}
+                        <tr>
+                            <td class="td-body">
+                                {{ flight.flight_number }}
+                            </td>
+                            <td class="td-body">
+                                {{ flight.flight_date|date:"d M Y" }} at {{ flight.flight_time|date:"H:i" }}
+                            </td>
+                            <td class="td-body">
+                                {{ flight.flight_direction }}
+                            </td>
+                            <td class="td-body">
+                                {{ flight.aircraft_type }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </body>

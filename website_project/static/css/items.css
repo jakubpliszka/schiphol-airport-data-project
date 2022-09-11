@@ -54,4 +54,27 @@ a.nav-link:hover {
 .main-content-header {
     text-align: center;
 }
+
+.table-fix-head { 
+    overflow: auto; 
+    height: 600px; 
+}
+
+.table-fix-head th { 
+    position: sticky; 
+    top: 0; 
+}
+
+table { 
+    border-collapse: collapse; 
+    width: 100%; 
+}
+
+th, td { 
+    padding: 8px 16px; 
+}
+
+th {
+    background:white; 
+}
 /* MAIN CONTENT END */
